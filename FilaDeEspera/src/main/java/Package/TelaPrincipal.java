@@ -6,6 +6,11 @@ package Package;
 
 import java.awt.Color;
 import java.awt.Component;
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
@@ -18,12 +23,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     int posicao = 20;
     int posicao2 = 0;
     int qtdLabels = 1;
-    /**
-     * Creates new form TelaPrincipal
-     */
+    
     public TelaPrincipal() {
         initComponents();
         setLocationRelativeTo(null);
+        btnTriagem.setBackground(new Color(0,0,0,0));
+        btnChamar.setBackground(new Color(0,0,0,0));
         
     }
     
@@ -37,8 +42,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnTriagem = new javax.swing.JButton();
+        btnChamar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         PainelSemScroll = new javax.swing.JPanel();
@@ -47,16 +52,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton2.setText("Triagem");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnTriagem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnTriagem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnTriagemActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 340, 110, 70));
+        getContentPane().add(btnTriagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 384, 110, 34));
 
-        jButton3.setText("Chamar");
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, 110, 70));
+        btnChamar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChamarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnChamar, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 338, 110, 34));
 
         jButton1.setText("Cadastrar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -64,16 +73,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 430, 110, 50));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 500, 110, 50));
 
         jScrollPane1.setBorder(null);
 
         PainelSemScroll.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jScrollPane1.setViewportView(PainelSemScroll);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 40, 440, 440));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 110, 360, 440));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/imgFundo.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/imgFundo.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
@@ -112,10 +121,44 @@ public class TelaPrincipal extends javax.swing.JFrame {
         qtdLabels +=1;
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnTriagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTriagemActionPerformed
         TelaTriagem TT = new TelaTriagem();
         TT.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnTriagemActionPerformed
+
+    private void btnChamarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChamarActionPerformed
+        try {
+            // Carregando o arquivo de áudio
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(TelaPrincipal.class.getResourceAsStream("/Audios/chamada"));
+
+            // Obtendo o formato de áudio do arquivo
+            AudioFormat format = audioInputStream.getFormat();
+
+            // Configurando o clip de áudio
+            DataLine.Info info = new DataLine.Info(Clip.class, format);
+            Clip clip = (Clip) AudioSystem.getLine(info);
+
+            // Abrindo o clip de áudio
+            clip.open(audioInputStream);
+
+            // Reproduzindo o áudio
+            clip.start();
+            
+            // Aguardando a reprodução terminar
+            while (!clip.isRunning()){
+                Thread.sleep(10);
+            }
+            while (clip.isRunning()){
+                Thread.sleep(10);
+            }
+
+            // Fechando o stream e o clip
+            clip.close();
+            audioInputStream.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btnChamarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -154,9 +197,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PainelSemScroll;
+    private javax.swing.JButton btnChamar;
+    private javax.swing.JButton btnTriagem;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
