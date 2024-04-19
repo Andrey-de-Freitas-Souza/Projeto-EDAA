@@ -6,6 +6,7 @@ package Package;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -29,7 +30,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         btnTriagem.setBackground(new Color(0,0,0,0));
         btnChamar.setBackground(new Color(0,0,0,0));
-        
+       
+     
     }
     
 
@@ -44,10 +46,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         btnTriagem = new javax.swing.JButton();
         btnChamar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        btnCadastrar = new javax.swing.JButton();
+        PainelComScroll = new javax.swing.JScrollPane();
         PainelSemScroll = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        imgFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -67,29 +69,30 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         getContentPane().add(btnChamar, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 338, 110, 34));
 
-        jButton1.setText("Cadastrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnCadastrar.setText("Cadastrar");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnCadastrarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 500, 110, 50));
+        getContentPane().add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 500, 110, 50));
 
-        jScrollPane1.setBorder(null);
+        PainelComScroll.setBorder(null);
 
+        PainelSemScroll.setBackground(new java.awt.Color(247, 252, 255));
         PainelSemScroll.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jScrollPane1.setViewportView(PainelSemScroll);
+        PainelComScroll.setViewportView(PainelSemScroll);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 110, 360, 440));
+        getContentPane().add(PainelComScroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 110, 388, 430));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/imgFundo.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        imgFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/imgFundo.png"))); // NOI18N
+        getContentPane().add(imgFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JLabel jLabel1 = new javax.swing.JLabel();
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        JLabel Labels = new javax.swing.JLabel();
         JLabel Nome = new javax.swing.JLabel();
         JLabel Idade = new javax.swing.JLabel();
         JLabel Sintomas = new javax.swing.JLabel();
@@ -97,29 +100,28 @@ public class TelaPrincipal extends javax.swing.JFrame {
         JLabel Prioridade = new javax.swing.JLabel();
           
         Nome.setText("Nome");
-        PainelSemScroll.add(Nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(70,posicao2 +28, -1, -1));
+        PainelSemScroll.add(Nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(50,posicao2 +28, -1, -1));
 
         Idade.setText("Idade");
-        PainelSemScroll.add(Idade, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, posicao2 +45, -1, -1));;
+        PainelSemScroll.add(Idade, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, posicao2 +45, -1, -1));;
 
         Sintomas.setText("Sintomas");
-        PainelSemScroll.add(Sintomas, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, posicao2 +61, -1, -1));
+        PainelSemScroll.add(Sintomas, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, posicao2 +61, -1, -1));
 
         NumFila.setText("N° na fila");
-        PainelSemScroll.add(NumFila, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, posicao2 + 29, -1, -1));
+        PainelSemScroll.add(NumFila, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, posicao2 + 29, -1, -1));
         
         Prioridade.setText("Alta");
-        PainelSemScroll.add(Prioridade, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, posicao2 +61, -1, -1));
+        PainelSemScroll.add(Prioridade, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, posicao2 +61, -1, -1));
         
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/PosicaoVermelha.png"))); // NOI18N
-        PainelSemScroll.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, posicao, 386, 69));
+        Labels.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/PosicaoVermelha.png"))); // NOI18N
+        PainelSemScroll.add(Labels, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, posicao, 386, 69));
         
-        PainelSemScroll.revalidate();
-        PainelSemScroll.repaint();
+        revalidate();
         posicao += 80;
         posicao2 += 80;
         qtdLabels +=1;
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnTriagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTriagemActionPerformed
         TelaTriagem TT = new TelaTriagem();
@@ -196,11 +198,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane PainelComScroll;
     private javax.swing.JPanel PainelSemScroll;
+    private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnChamar;
     private javax.swing.JButton btnTriagem;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel imgFundo;
     // End of variables declaration//GEN-END:variables
 }

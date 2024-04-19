@@ -190,7 +190,10 @@ public class TelaTriagem extends javax.swing.JFrame {
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         String nome = txtNome.getText();
-        
+        int gravissimos = 0;
+        int graves = 0;
+        int medios = 0;
+        int leves = 0;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate dataNascimento = LocalDate.parse(txtNascimento.getText(), formatter);
         LocalDate dataAtual = LocalDate.now();
@@ -213,10 +216,7 @@ public class TelaTriagem extends javax.swing.JFrame {
             idoso = false;
         }
         int dor = cbxDor.getSelectedIndex();
-        int gravissimos = 0;
-        int graves = 0;
-        int medios = 0;
-        int leves = 0;
+        
         if(dor == 1){
             leves += 1;
         }
