@@ -83,7 +83,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         PainelSemScroll.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         PainelComScroll.setViewportView(PainelSemScroll);
 
-        getContentPane().add(PainelComScroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 110, 388, 430));
+        getContentPane().add(PainelComScroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 110, 410, 430));
 
         imgFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/imgFundo.png"))); // NOI18N
         getContentPane().add(imgFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));

@@ -15,8 +15,9 @@ public class Paciente {
     private int medios;
     private int leves;
     private int posicao;
+    private String prioridade;
 
-    public Paciente(String nome, int anos, int meses ,double temperatura, boolean gravida, boolean idoso, int dor, int gravissimos, int graves, int medios, int leves, int posicao) {
+    public Paciente(String nome, int anos, int meses ,double temperatura, boolean gravida, boolean idoso, int dor, int gravissimos, int graves, int medios, int leves, String prioridade, int posicao) {
         this.nome = nome;
         this.anos = anos;
         this.meses = meses;
@@ -28,6 +29,7 @@ public class Paciente {
         this.graves = graves;
         this.medios = medios;
         this.leves = leves;
+        this.prioridade = prioridade;
         this.posicao = posicao;
     }
     
@@ -125,6 +127,14 @@ public class Paciente {
 
     public void setMeses(int Meses) {
         this.meses = Meses;
+    }
+
+    public String getPrioridade() {
+        return prioridade;
+    }
+
+    public void setPrioridade(String prioridade) {
+        this.prioridade = prioridade;
     }
     
         

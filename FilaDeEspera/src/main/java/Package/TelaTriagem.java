@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -190,11 +191,16 @@ public class TelaTriagem extends javax.swing.JFrame {
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         String nome = txtNome.getText();
+        String prioridade = "Azul";
         int gravissimos = 0;
         int graves = 0;
         int medios = 0;
         int leves = 0;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        if(txtNascimento.getText().equals("  /  /    ")){
+            JOptionPane.showMessageDialog(null, "Data inválida");
+        }
+   
         LocalDate dataNascimento = LocalDate.parse(txtNascimento.getText(), formatter);
         LocalDate dataAtual = LocalDate.now();
         Period periodo = Period.between(dataNascimento, dataAtual);
@@ -269,10 +275,21 @@ public class TelaTriagem extends javax.swing.JFrame {
         if(checkLeve1.isSelected()){
             leves += 1;
         }
-        
+        if(gravissimos >0 ){
+            prioridade = "Vermelho";
+        }
+        else if(graves > 0 ){
+            prioridade = "Laranja";
+        }
+        else if(medios > 0 ){
+            prioridade = "Amarelo";
+        }
+        else if(leves > 0 ){
+            prioridade = "Verde";
+        }
                 
         int posicao = 0;
-        Paciente pac = new Paciente(nome,anos,meses ,temperatura,gravida,idoso,dor,gravissimos,graves,medios,leves,posicao);
+        Paciente pac = new Paciente(nome,anos,meses ,temperatura,gravida,idoso,dor,gravissimos,graves,medios,leves,prioridade,posicao);
         System.out.println("Nome: " + pac.getNome());  
         System.out.println("Anos: " + pac.getAnos()); 
         System.out.println("Meses: " + pac.getMeses()); 
@@ -284,9 +301,10 @@ public class TelaTriagem extends javax.swing.JFrame {
         System.out.println("Qtd. Graves: " + pac.getGraves()); 
         System.out.println("Qtd. Medios: " + pac.getMedios()); 
         System.out.println("Qtd. Leves: " + pac.getLeves()); 
-        //System.out.println("Posicao: " + pac.getPosicao()); 
-        
-                
+        System.out.println("Prioridade: " + pac.getPrioridade());
+        TelaPrincipal TP = new TelaPrincipal();  
+        TP.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     /**
