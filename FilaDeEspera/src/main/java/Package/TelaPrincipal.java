@@ -5,15 +5,18 @@
 package Package;
 
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
+import java.awt.Font;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+
+import javax.swing.JOptionPane;
 
 
 /**
@@ -21,15 +24,30 @@ import javax.swing.border.EmptyBorder;
  * @author andre
  */
 public class TelaPrincipal extends javax.swing.JFrame {
+    
     int posicao = 20;
     int posicao2 = 0;
     int qtdLabels = 1;
+    int qtdpacientes = 0;
+    
+    
+    Sistema filaPrioritaria = new Sistema();
     
     public TelaPrincipal() {
+        super("Hospital");
         initComponents();
+        
         setLocationRelativeTo(null);
         btnTriagem.setBackground(new Color(0,0,0,0));
         btnChamar.setBackground(new Color(0,0,0,0));
+        TelaTriag.setVisible(false);
+        txtNascimento.setBackground(new Color(0,0,0,0));
+        txtNome.setBackground(new Color(0,0,0,0));
+        cbxGravida.setBackground(new Color(0,0,0,0));
+        cbxDor.setBackground(new Color(0,0,0,0));
+        txtTemperatura.setBackground(new Color(0,0,0,0));
+        btnRegistrar.setBackground(new Color(0,0,0,0));
+        btnVoltar.setBackground(new Color(0,0,0,0));
        
      
     }
@@ -44,38 +62,74 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        TelaPrinci = new javax.swing.JPanel();
         btnTriagem = new javax.swing.JButton();
         btnChamar = new javax.swing.JButton();
-        btnCadastrar = new javax.swing.JButton();
         PainelComScroll = new javax.swing.JScrollPane();
         PainelSemScroll = new javax.swing.JPanel();
+        senha1 = new javax.swing.JLabel();
         imgFundo = new javax.swing.JLabel();
+        TelaTriag = new javax.swing.JPanel();
+        btnVoltar = new javax.swing.JButton();
+        btnRegistrar = new javax.swing.JButton();
+        txtNome = new javax.swing.JTextField();
+        sldTemp = new javax.swing.JSlider();
+        cbxGravida = new javax.swing.JComboBox<>();
+        txtTemperatura = new javax.swing.JTextField();
+        cbxDor = new javax.swing.JComboBox<>();
+        txtNascimento = new javax.swing.JFormattedTextField();
+        checkLeve1 = new javax.swing.JCheckBox();
+        checkMedio = new javax.swing.JCheckBox();
+        checkMedio2 = new javax.swing.JCheckBox();
+        checkGrave1 = new javax.swing.JCheckBox();
+        checkGrave2 = new javax.swing.JCheckBox();
+        checkGrave3 = new javax.swing.JCheckBox();
+        checGravissimo1 = new javax.swing.JCheckBox();
+        checGravissimo2 = new javax.swing.JCheckBox();
+        checGravissimo3 = new javax.swing.JCheckBox();
+        checGravissimo4 = new javax.swing.JCheckBox();
+        checGravissimo5 = new javax.swing.JCheckBox();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        TelaPrinci.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnTriagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/btnTriagem.png"))); // NOI18N
         btnTriagem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnTriagem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnTriagemMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnTriagemMouseExited(evt);
+            }
+        });
         btnTriagem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTriagemActionPerformed(evt);
             }
         });
-        getContentPane().add(btnTriagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 384, 110, 34));
+        TelaPrinci.add(btnTriagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 380, 120, 40));
 
+        btnChamar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/btnChamar.png"))); // NOI18N
+        btnChamar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnChamar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnChamarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnChamarMouseExited(evt);
+            }
+        });
         btnChamar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnChamarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnChamar, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 338, 110, 34));
-
-        btnCadastrar.setText("Cadastrar");
-        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 500, 110, 50));
+        TelaPrinci.add(btnChamar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 335, 120, 40));
 
         PainelComScroll.setBorder(null);
 
@@ -83,52 +137,198 @@ public class TelaPrincipal extends javax.swing.JFrame {
         PainelSemScroll.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         PainelComScroll.setViewportView(PainelSemScroll);
 
-        getContentPane().add(PainelComScroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 110, 410, 430));
+        TelaPrinci.add(PainelComScroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 110, 410, 430));
+
+        senha1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        senha1.setText("0");
+        TelaPrinci.add(senha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, -1, -1));
 
         imgFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/imgFundo.png"))); // NOI18N
-        getContentPane().add(imgFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        TelaPrinci.add(imgFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        getContentPane().add(TelaPrinci, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1130, 760));
+
+        TelaTriag.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/btnVoltar.png"))); // NOI18N
+        btnVoltar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVoltar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnVoltarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnVoltarMouseExited(evt);
+            }
+        });
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+        TelaTriag.add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 640, 280, 80));
+
+        btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/btnRegistrar.png"))); // NOI18N
+        btnRegistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRegistrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnRegistrarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnRegistrarMouseExited(evt);
+            }
+        });
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
+        TelaTriag.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 560, 280, 80));
+
+        txtNome.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtNome.setBorder(null);
+        TelaTriag.add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 205, 410, 45));
+
+        sldTemp.setMaximum(500);
+        sldTemp.setMinimum(300);
+        sldTemp.setValue(365);
+        sldTemp.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                sldTempStateChanged(evt);
+            }
+        });
+        TelaTriag.add(sldTemp, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 340, 140, -1));
+
+        cbxGravida.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        cbxGravida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Não", "Sim" }));
+        cbxGravida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        TelaTriag.add(cbxGravida, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 295, 140, 45));
+
+        txtTemperatura.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtTemperatura.setText("36.5");
+        txtTemperatura.setBorder(null);
+        txtTemperatura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTemperaturaActionPerformed(evt);
+            }
+        });
+        TelaTriag.add(txtTemperatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 295, 130, 45));
+
+        cbxDor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        cbxDor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sem Dores", "Dores Leves", "Dores Moderadas", "Dores Severas" }));
+        cbxDor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        TelaTriag.add(cbxDor, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 295, 200, 45));
+
+        txtNascimento.setBorder(null);
+        try {
+            txtNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtNascimento.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        txtNascimento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNascimentoActionPerformed(evt);
+            }
+        });
+        TelaTriag.add(txtNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 205, 110, 45));
+
+        checkLeve1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkLeve1ActionPerformed(evt);
+            }
+        });
+        TelaTriag.add(checkLeve1, new org.netbeans.lib.awtextra.AbsoluteConstraints(515, 668, -1, -1));
+        TelaTriag.add(checkMedio, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 677, -1, -1));
+        TelaTriag.add(checkMedio2, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 709, -1, -1));
+        TelaTriag.add(checkGrave1, new org.netbeans.lib.awtextra.AbsoluteConstraints(515, 527, -1, -1));
+        TelaTriag.add(checkGrave2, new org.netbeans.lib.awtextra.AbsoluteConstraints(515, 495, -1, -1));
+        TelaTriag.add(checkGrave3, new org.netbeans.lib.awtextra.AbsoluteConstraints(515, 462, -1, -1));
+
+        checGravissimo1.setBorder(null);
+        checGravissimo1.setContentAreaFilled(false);
+        TelaTriag.add(checGravissimo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 462, -1, -1));
+
+        checGravissimo2.setBorder(null);
+        checGravissimo2.setContentAreaFilled(false);
+        TelaTriag.add(checGravissimo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 493, -1, -1));
+
+        checGravissimo3.setBorder(null);
+        checGravissimo3.setContentAreaFilled(false);
+        TelaTriag.add(checGravissimo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 524, -1, -1));
+
+        checGravissimo4.setBorder(null);
+        checGravissimo4.setContentAreaFilled(false);
+        TelaTriag.add(checGravissimo4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 557, -1, -1));
+
+        checGravissimo5.setBorder(null);
+        checGravissimo5.setContentAreaFilled(false);
+        TelaTriag.add(checGravissimo5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 588, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/TelaTriagem.png"))); // NOI18N
+        TelaTriag.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        getContentPane().add(TelaTriag, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1130, 760));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        JLabel Labels = new javax.swing.JLabel();
-        JLabel Nome = new javax.swing.JLabel();
-        JLabel Idade = new javax.swing.JLabel();
-        JLabel Sintomas = new javax.swing.JLabel();
-        JLabel NumFila = new javax.swing.JLabel();
-        JLabel Prioridade = new javax.swing.JLabel();
-          
-        Nome.setText("Nome");
-        PainelSemScroll.add(Nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(50,posicao2 +28, -1, -1));
-
-        Idade.setText("Idade");
-        PainelSemScroll.add(Idade, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, posicao2 +45, -1, -1));;
-
-        Sintomas.setText("Sintomas");
-        PainelSemScroll.add(Sintomas, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, posicao2 +61, -1, -1));
-
-        NumFila.setText("N° na fila");
-        PainelSemScroll.add(NumFila, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, posicao2 + 29, -1, -1));
-        
-        Prioridade.setText("Alta");
-        PainelSemScroll.add(Prioridade, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, posicao2 +61, -1, -1));
-        
-        Labels.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/PosicaoVermelha.png"))); // NOI18N
-        PainelSemScroll.add(Labels, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, posicao, 386, 69));
-        
-        revalidate();
-        posicao += 80;
-        posicao2 += 80;
-        qtdLabels +=1;
-    }//GEN-LAST:event_btnCadastrarActionPerformed
-
     private void btnTriagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTriagemActionPerformed
-        TelaTriagem TT = new TelaTriagem();
-        TT.setVisible(true);
+       TelaTriag.setVisible(true);
+       TelaPrinci.setVisible(false);
     }//GEN-LAST:event_btnTriagemActionPerformed
 
     private void btnChamarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChamarActionPerformed
+        PainelSemScroll.removeAll();
+        PainelSemScroll.revalidate();
+        PainelSemScroll.repaint();
+        posicao = 20;
+        posicao2 = 0;
+        Paciente ParaSenha = (Paciente) filaPrioritaria.acessarElemento(0);
+        senha1.setText(ParaSenha.getSenha());
+        filaPrioritaria.desenfileirar();
+         for(int i = 0; i < filaPrioritaria.contarElementos();i++){
+            
+            System.out.println(i);
+            System.out.println(filaPrioritaria.contarElementos()+1);
+            Paciente elemento = (Paciente) filaPrioritaria.acessarElemento(i);
+            System.out.println(elemento.getNome());
+            JLabel Labels = new javax.swing.JLabel();
+            JLabel Nome = new javax.swing.JLabel();
+            JLabel Idade = new javax.swing.JLabel();
+            JLabel Sintomas = new javax.swing.JLabel();
+            JLabel NumFila = new javax.swing.JLabel();
+            JLabel Prioridade = new javax.swing.JLabel();
+            JLabel Senha = new javax.swing.JLabel();
+            
+            Senha.setText(elemento.getSenha());
+            PainelSemScroll.add(Senha, new org.netbeans.lib.awtextra.AbsoluteConstraints(286,posicao2 +46, -1, -1));
+            
+            Nome.setText(elemento.getNome());
+            PainelSemScroll.add(Nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(50,posicao2 +28, -1, -1));
+
+            Idade.setText(String.valueOf(elemento.getAnos()) + " anos e " + elemento.getMeses() + " meses.");
+            PainelSemScroll.add(Idade, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, posicao2 +45, -1, -1));;
+
+            Sintomas.setText(elemento.getSintoma());
+            PainelSemScroll.add(Sintomas, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, posicao2 +61, -1, -1));
+
+            NumFila.setText((i+1)+ "°");
+            PainelSemScroll.add(NumFila, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, posicao2 + 29, -1, -1));
+
+            Prioridade.setText("teste");
+            PainelSemScroll.add(Prioridade, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, posicao2 +61, -1, -1));
+
+            Labels.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Posicao" + elemento.getPrioridade()+ ".png"))); // NOI18N
+            PainelSemScroll.add(Labels, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, posicao, 386, 69));
+
+            
+            posicao += 80;
+            posicao2 += 80;
+            qtdLabels +=1;
+            System.out.println("Tem que olhar aqui: " + filaPrioritaria.contarElementos());
+            PainelSemScroll.revalidate();
+         }
+        
         try {
             // Carregando o arquivo de áudio
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(TelaPrincipal.class.getResourceAsStream("/Audios/chamada"));
@@ -160,7 +360,300 @@ public class TelaPrincipal extends javax.swing.JFrame {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        revalidate();
     }//GEN-LAST:event_btnChamarActionPerformed
+
+    private void btnRegistrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMouseEntered
+        btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/btnRegistrar2.png")));
+    }//GEN-LAST:event_btnRegistrarMouseEntered
+
+    private void btnRegistrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMouseExited
+        btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/btnRegistrar.png")));
+    }//GEN-LAST:event_btnRegistrarMouseExited
+
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        qtdpacientes ++;
+        String nome = txtNome.getText();
+        String prioridade = "Azul";
+        String prioridadeLabel = "Muito Baixa.";
+        int gravissimos = 0;
+        int graves = 0;
+        int medios = 0;
+        int leves = 0;
+        String sintomaLeve = "";
+        String sintomaMedio = "";
+        String sintomaGrave = "";
+        String sintomaGravissimo = "";
+        String sintoma = "";
+        String senhaPriod = "MB 50";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        if(txtNascimento.getText().equals("  /  /    ")){
+            JOptionPane.showMessageDialog(null, "Data inválida");
+        }
+
+        LocalDate dataNascimento = LocalDate.parse(txtNascimento.getText(), formatter);
+        LocalDate dataAtual = LocalDate.now();
+        Period periodo = Period.between(dataNascimento, dataAtual);
+        int anos = periodo.getYears();
+        int meses = periodo.getMonths();
+        double temperatura = Double.parseDouble(txtTemperatura.getText());
+        boolean gravida;
+        if(cbxGravida.getSelectedIndex() == 0){
+            gravida = false;
+        }
+        else{
+            gravida = true;
+            sintomaMedio = "Grávida.";
+            medios += 1;
+        }
+        boolean idoso;
+        if(anos>=60){
+            idoso = true;
+            sintomaMedio = "Idoso.";
+            medios += 1;
+        }
+        else{
+            idoso = false;
+        }
+        int dor = cbxDor.getSelectedIndex();
+
+        if(dor == 1){
+            leves += 1;
+            sintomaLeve = "Dor leve.";
+        }
+        else if(dor == 2){
+            medios += 1;
+            sintomaMedio = "Dor moderada.";
+        }
+        else if(dor == 3){
+            graves += 1;
+            sintomaGrave = "Dor Severa.";
+        }
+        if(37.0 <= temperatura & temperatura <= 38.0){
+            leves += 1;
+            sintomaLeve = "Temperatura igual a " + temperatura + ".";
+        }
+        else if(38.0 < temperatura & temperatura <= 39.0){
+            medios += 1;
+            sintomaMedio = "Temperatura igual a " + temperatura + ".";
+        }
+        else if(39.0 <= temperatura){
+            graves += 1;
+            sintomaGrave = "Temperatura igual a " + temperatura + ".";
+        }
+
+        if(checGravissimo1.isSelected()){
+            gravissimos += 1;
+            sintomaGravissimo = "Comp. das vias aéreas.";
+        }
+        if(checGravissimo2.isSelected()){
+            gravissimos += 1;
+            sintomaGravissimo = "Respiração ineficaz.";
+        }
+        if(checGravissimo3.isSelected()){
+            gravissimos += 1;
+            sintomaGravissimo = "Choque.";
+        }
+        if(checGravissimo4.isSelected()){
+            gravissimos += 1;
+            sintomaGravissimo = "Não responde a estímulos.";
+        }
+        if(checGravissimo5.isSelected()){
+            gravissimos += 1;
+            sintomaGravissimo = "Em convulsão.";
+        }
+        if(checkGrave1.isSelected()){
+            graves += 1;
+            sintomaGrave = "Trauma craniano severo.";
+            
+        }
+        if(checkGrave2.isSelected()){
+            graves += 1;
+            sintomaGrave = "Distorção da consciência.";
+        }
+        if(checkGrave3.isSelected()){
+            graves += 1;
+            
+            sintomaGrave = "Grande hemorragia.";
+        }
+        if(checkMedio.isSelected()){
+            medios += 1;
+            sintomaMedio = "Pequena hemorragia.";
+        }
+        if(checkMedio2.isSelected()){
+            medios += 1;
+            sintomaMedio = "Vômito persistente.";
+        }
+        if(checkLeve1.isSelected()){
+            leves += 1;
+            sintomaLeve= "Náuseas.";
+        }
+        int fila = 4;
+        if(gravissimos >0 ){
+            prioridade = "Vermelha";
+            sintoma = sintomaGravissimo;
+            prioridadeLabel = "Muito Alta.";
+            fila = 0;
+            senhaPriod = "MA 0";
+        }
+        else if(graves > 0 ){
+            prioridade = "Laranja";
+            sintoma = sintomaGrave;
+            prioridadeLabel = "Alta.";
+            fila = 1;
+            senhaPriod = "A 20";
+        }
+        else if(medios > 0 ){
+            prioridade = "Amarela";
+            sintoma = sintomaMedio;
+            prioridadeLabel = "Média.";
+            fila = 2;
+            senhaPriod = "M 30";
+        }
+        else if(leves > 0 ){
+            prioridade = "Verde";
+            sintoma = sintomaLeve;
+            prioridadeLabel = "Baixa.";
+            fila = 3;
+            senhaPriod = "B 40";
+        }
+        
+        int pos= 0;
+        String senha = String.valueOf(qtdpacientes);
+        Paciente pac = new Paciente(nome,anos,meses ,temperatura,gravida,idoso,dor,gravissimos,graves,medios,leves,sintomaLeve,sintomaMedio,sintomaGrave,sintomaGravissimo,sintoma,pos,prioridade,senha);
+        filaPrioritaria.enfileirar(pac,fila);
+     
+        System.out.println(filaPrioritaria.contarElementos());
+        PainelSemScroll.removeAll();
+        PainelSemScroll.revalidate();
+        posicao = 20;
+        posicao2 = 0;
+         for(int i = 0; i < filaPrioritaria.contarElementos();i++){
+            System.out.println(i);
+            System.out.println(filaPrioritaria.contarElementos()+1);
+            Paciente elemento = (Paciente) filaPrioritaria.acessarElemento(i);
+            System.out.println(elemento.getNome());
+            JLabel Labels = new javax.swing.JLabel();
+            JLabel Nome = new javax.swing.JLabel();
+            JLabel Idade = new javax.swing.JLabel();
+            JLabel Sintomas = new javax.swing.JLabel();
+            JLabel NumFila = new javax.swing.JLabel();
+            JLabel Prioridade = new javax.swing.JLabel();
+            JLabel Senha = new javax.swing.JLabel();
+            
+            Senha.setText(elemento.getSenha());
+            PainelSemScroll.add(Senha, new org.netbeans.lib.awtextra.AbsoluteConstraints(286,posicao2 +46, -1, -1));
+            
+            Nome.setText(elemento.getNome());
+            PainelSemScroll.add(Nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(50,posicao2 +28, -1, -1));
+
+            Idade.setText(String.valueOf(elemento.getAnos()) + " anos e " + elemento.getMeses() + " meses.");
+            PainelSemScroll.add(Idade, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, posicao2 +45, -1, -1));;
+
+            Sintomas.setText(elemento.getSintoma());
+            PainelSemScroll.add(Sintomas, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, posicao2 +61, -1, -1));
+
+            NumFila.setText((i+1) + "°");
+            PainelSemScroll.add(NumFila, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, posicao2 + 29, -1, -1));
+
+            Prioridade.setText(prioridadeLabel);
+            PainelSemScroll.add(Prioridade, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, posicao2 +61, -1, -1));
+
+            Labels.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Posicao" + elemento.getPrioridade()+ ".png"))); // NOI18N
+            PainelSemScroll.add(Labels, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, posicao, 386, 69));
+
+            revalidate();
+            posicao += 80;
+            posicao2 += 80;
+            qtdLabels +=1;
+         }
+        txtNome.setText("");
+        txtNascimento.setText("");
+        txtTemperatura.setText("36.5");
+        sldTemp.setValue(365);
+        cbxGravida.setSelectedIndex(0);
+        cbxDor.setSelectedIndex(0);
+        TelaPrinci.setVisible(true);
+        TelaTriag.setVisible(false);
+        checGravissimo1.setSelected(false);
+        checGravissimo2.setSelected(false);
+        checGravissimo3.setSelected(false);
+        checGravissimo4.setSelected(false);
+        checGravissimo5.setSelected(false);
+        checkGrave1.setSelected(false);
+        checkGrave2.setSelected(false);
+        checkGrave3.setSelected(false);
+        checkMedio.setSelected(false);
+        checkMedio2.setSelected(false);
+        checkLeve1.setSelected(false);
+        
+
+    }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void sldTempStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sldTempStateChanged
+        double value = sldTemp.getValue() / 10.0;
+        txtTemperatura.setText(String.valueOf(value));
+    }//GEN-LAST:event_sldTempStateChanged
+
+    private void txtTemperaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTemperaturaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTemperaturaActionPerformed
+
+    private void checkLeve1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkLeve1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_checkLeve1ActionPerformed
+
+    private void txtNascimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNascimentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNascimentoActionPerformed
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        TelaPrinci.setVisible(true);
+        TelaTriag.setVisible(false);
+        txtNome.setText("");
+        txtNascimento.setText("");
+        txtTemperatura.setText("36.5");
+        sldTemp.setValue(365);
+        cbxGravida.setSelectedIndex(0);
+        cbxDor.setSelectedIndex(0);
+        TelaPrinci.setVisible(true);
+        TelaTriag.setVisible(false);
+        checGravissimo1.setSelected(false);
+        checGravissimo2.setSelected(false);
+        checGravissimo3.setSelected(false);
+        checGravissimo4.setSelected(false);
+        checGravissimo5.setSelected(false);
+        checkGrave1.setSelected(false);
+        checkGrave2.setSelected(false);
+        checkGrave3.setSelected(false);
+        checkMedio.setSelected(false);
+        checkMedio2.setSelected(false);
+        checkLeve1.setSelected(false);
+    }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void btnVoltarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseEntered
+         btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/btnVoltar2.png")));
+    }//GEN-LAST:event_btnVoltarMouseEntered
+
+    private void btnVoltarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseExited
+        btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/btnVoltar.png")));
+    }//GEN-LAST:event_btnVoltarMouseExited
+
+    private void btnChamarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnChamarMouseEntered
+        btnChamar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/btnChamar2.png")));
+    }//GEN-LAST:event_btnChamarMouseEntered
+
+    private void btnChamarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnChamarMouseExited
+        btnChamar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/btnChamar.png")));
+    }//GEN-LAST:event_btnChamarMouseExited
+
+    private void btnTriagemMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTriagemMouseEntered
+        btnTriagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/btnTriagem2.png")));
+    }//GEN-LAST:event_btnTriagemMouseEntered
+
+    private void btnTriagemMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTriagemMouseExited
+         btnTriagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/btnTriagem.png")));
+    }//GEN-LAST:event_btnTriagemMouseExited
 
     /**
      * @param args the command line arguments
@@ -200,9 +693,31 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane PainelComScroll;
     private javax.swing.JPanel PainelSemScroll;
-    private javax.swing.JButton btnCadastrar;
+    private javax.swing.JPanel TelaPrinci;
+    private javax.swing.JPanel TelaTriag;
     private javax.swing.JButton btnChamar;
+    private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnTriagem;
+    private javax.swing.JButton btnVoltar;
+    private javax.swing.JComboBox<String> cbxDor;
+    private javax.swing.JComboBox<String> cbxGravida;
+    private javax.swing.JCheckBox checGravissimo1;
+    private javax.swing.JCheckBox checGravissimo2;
+    private javax.swing.JCheckBox checGravissimo3;
+    private javax.swing.JCheckBox checGravissimo4;
+    private javax.swing.JCheckBox checGravissimo5;
+    private javax.swing.JCheckBox checkGrave1;
+    private javax.swing.JCheckBox checkGrave2;
+    private javax.swing.JCheckBox checkGrave3;
+    private javax.swing.JCheckBox checkLeve1;
+    private javax.swing.JCheckBox checkMedio;
+    private javax.swing.JCheckBox checkMedio2;
     private javax.swing.JLabel imgFundo;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel senha1;
+    private javax.swing.JSlider sldTemp;
+    private javax.swing.JFormattedTextField txtNascimento;
+    private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtTemperatura;
     // End of variables declaration//GEN-END:variables
 }

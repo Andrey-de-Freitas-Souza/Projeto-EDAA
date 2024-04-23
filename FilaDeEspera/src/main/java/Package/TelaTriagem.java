@@ -108,7 +108,7 @@ public class TelaTriagem extends javax.swing.JFrame {
         getContentPane().add(cbxGravida, new org.netbeans.lib.awtextra.AbsoluteConstraints(562, 232, 120, 40));
 
         txtTemperatura.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        txtTemperatura.setText("37.0");
+        txtTemperatura.setText("36.5");
         txtTemperatura.setBorder(null);
         txtTemperatura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
