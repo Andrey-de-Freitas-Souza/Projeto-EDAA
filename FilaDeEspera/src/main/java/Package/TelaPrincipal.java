@@ -5,7 +5,6 @@
 package Package;
 
 import java.awt.Color;
-import java.awt.Font;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -15,7 +14,6 @@ import javax.swing.*;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
-
 import javax.swing.JOptionPane;
 
 
@@ -27,9 +25,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     
     int posicao = 20;
     int posicao2 = 0;
-    int qtdLabels = 1;
     int qtdpacientes = 0;
-    
+    String senha = "";
+    String senha2 = "";
+    String senha3 = "";
+    String senha4 = "";
     
     Sistema filaPrioritaria = new Sistema();
     
@@ -48,6 +48,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         txtTemperatura.setBackground(new Color(0,0,0,0));
         btnRegistrar.setBackground(new Color(0,0,0,0));
         btnVoltar.setBackground(new Color(0,0,0,0));
+        txtSenha1.setText("");
+        txtSenha2.setText("");
+        txtSenha3.setText("");
+        txtSenha4.setText("");
        
      
     }
@@ -67,7 +71,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btnChamar = new javax.swing.JButton();
         PainelComScroll = new javax.swing.JScrollPane();
         PainelSemScroll = new javax.swing.JPanel();
-        senha1 = new javax.swing.JLabel();
+        txtSenha2 = new javax.swing.JLabel();
+        txtSenha3 = new javax.swing.JLabel();
+        txtSenha4 = new javax.swing.JLabel();
+        txtSenha1 = new javax.swing.JLabel();
         imgFundo = new javax.swing.JLabel();
         TelaTriag = new javax.swing.JPanel();
         btnVoltar = new javax.swing.JButton();
@@ -139,9 +146,21 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         TelaPrinci.add(PainelComScroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 110, 410, 430));
 
-        senha1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
-        senha1.setText("0");
-        TelaPrinci.add(senha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, -1, -1));
+        txtSenha2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtSenha2.setText("0");
+        TelaPrinci.add(txtSenha2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, -1, -1));
+
+        txtSenha3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtSenha3.setText("0");
+        TelaPrinci.add(txtSenha3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, -1, -1));
+
+        txtSenha4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtSenha4.setText("0");
+        TelaPrinci.add(txtSenha4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 230, -1, -1));
+
+        txtSenha1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        txtSenha1.setText("0");
+        TelaPrinci.add(txtSenha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, -1, -1));
 
         imgFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/imgFundo.png"))); // NOI18N
         TelaPrinci.add(imgFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -278,89 +297,94 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTriagemActionPerformed
 
     private void btnChamarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChamarActionPerformed
-        PainelSemScroll.removeAll();
-        PainelSemScroll.revalidate();
-        PainelSemScroll.repaint();
-        posicao = 20;
-        posicao2 = 0;
-        Paciente ParaSenha = (Paciente) filaPrioritaria.acessarElemento(0);
-        senha1.setText(ParaSenha.getSenha());
-        filaPrioritaria.desenfileirar();
-         for(int i = 0; i < filaPrioritaria.contarElementos();i++){
-            
-            System.out.println(i);
-            System.out.println(filaPrioritaria.contarElementos()+1);
-            Paciente elemento = (Paciente) filaPrioritaria.acessarElemento(i);
-            System.out.println(elemento.getNome());
-            JLabel Labels = new javax.swing.JLabel();
-            JLabel Nome = new javax.swing.JLabel();
-            JLabel Idade = new javax.swing.JLabel();
-            JLabel Sintomas = new javax.swing.JLabel();
-            JLabel NumFila = new javax.swing.JLabel();
-            JLabel Prioridade = new javax.swing.JLabel();
-            JLabel Senha = new javax.swing.JLabel();
-            
-            Senha.setText(elemento.getSenha());
-            PainelSemScroll.add(Senha, new org.netbeans.lib.awtextra.AbsoluteConstraints(286,posicao2 +46, -1, -1));
-            
-            Nome.setText(elemento.getNome());
-            PainelSemScroll.add(Nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(50,posicao2 +28, -1, -1));
-
-            Idade.setText(String.valueOf(elemento.getAnos()) + " anos e " + elemento.getMeses() + " meses.");
-            PainelSemScroll.add(Idade, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, posicao2 +45, -1, -1));;
-
-            Sintomas.setText(elemento.getSintoma());
-            PainelSemScroll.add(Sintomas, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, posicao2 +61, -1, -1));
-
-            NumFila.setText((i+1)+ "°");
-            PainelSemScroll.add(NumFila, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, posicao2 + 29, -1, -1));
-
-            Prioridade.setText("teste");
-            PainelSemScroll.add(Prioridade, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, posicao2 +61, -1, -1));
-
-            Labels.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Posicao" + elemento.getPrioridade()+ ".png"))); // NOI18N
-            PainelSemScroll.add(Labels, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, posicao, 386, 69));
-
-            
-            posicao += 80;
-            posicao2 += 80;
-            qtdLabels +=1;
-            System.out.println("Tem que olhar aqui: " + filaPrioritaria.contarElementos());
-            PainelSemScroll.revalidate();
-         }
         
-        try {
-            // Carregando o arquivo de áudio
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(TelaPrincipal.class.getResourceAsStream("/Audios/chamada"));
-
-            // Obtendo o formato de áudio do arquivo
-            AudioFormat format = audioInputStream.getFormat();
-
-            // Configurando o clip de áudio
-            DataLine.Info info = new DataLine.Info(Clip.class, format);
-            Clip clip = (Clip) AudioSystem.getLine(info);
-
-            // Abrindo o clip de áudio
-            clip.open(audioInputStream);
-
-            // Reproduzindo o áudio
-            clip.start();
-            
-            // Aguardando a reprodução terminar
-            while (!clip.isRunning()){
-                Thread.sleep(10);
-            }
-            while (clip.isRunning()){
-                Thread.sleep(10);
-            }
-
-            // Fechando o stream e o clip
-            clip.close();
-            audioInputStream.close();
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        if (filaPrioritaria.contarElementos() ==0){
+            JOptionPane.showMessageDialog(null, "A fila está vazia!","Atenção",JOptionPane.WARNING_MESSAGE);
         }
-        revalidate();
+        else{
+            PainelSemScroll.removeAll();
+            PainelSemScroll.revalidate();
+            PainelSemScroll.repaint();
+            posicao = 20;
+            posicao2 = 0;
+            Paciente ParaSenha = (Paciente) filaPrioritaria.acessarElemento(0);
+            senha = ParaSenha.getSenha();
+            txtSenha1.setText(senha);
+            txtSenha2.setText(senha2);
+            txtSenha3.setText(senha3);
+            txtSenha4.setText(senha4);
+            senha4 = senha3;
+            senha3 = senha2;
+            senha2 = senha;
+
+
+
+            filaPrioritaria.desenfileirar();
+             for(int i = 0; i < filaPrioritaria.contarElementos();i++){
+                Paciente elemento = (Paciente) filaPrioritaria.acessarElemento(i);
+
+                JLabel Labels = new javax.swing.JLabel();
+                JLabel Nome = new javax.swing.JLabel();
+                JLabel Idade = new javax.swing.JLabel();
+                JLabel Sintomas = new javax.swing.JLabel();
+                JLabel NumFila = new javax.swing.JLabel();
+                JLabel Prioridade = new javax.swing.JLabel();
+                JLabel Senha = new javax.swing.JLabel();
+
+                Senha.setText(elemento.getSenha());
+                PainelSemScroll.add(Senha, new org.netbeans.lib.awtextra.AbsoluteConstraints(286,posicao2 +46, -1, -1));
+
+                Nome.setText(elemento.getNome());
+                PainelSemScroll.add(Nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(50,posicao2 +28, -1, -1));
+
+                Idade.setText(String.valueOf(elemento.getAnos()) + " anos e " + elemento.getMeses() + " meses.");
+                PainelSemScroll.add(Idade, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, posicao2 +45, -1, -1));;
+
+                Sintomas.setText(elemento.getSintoma());
+                PainelSemScroll.add(Sintomas, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, posicao2 +61, -1, -1));
+
+                NumFila.setText((i+1)+ "°");
+                PainelSemScroll.add(NumFila, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, posicao2 + 29, -1, -1));
+
+                Prioridade.setText(elemento.getPrioridade());
+                PainelSemScroll.add(Prioridade, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, posicao2 +61, -1, -1));
+
+                Labels.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Posicao" + elemento.getPrioridade()+ ".png"))); // NOI18N
+                PainelSemScroll.add(Labels, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, posicao, 386, 69));
+
+                posicao += 80;
+                posicao2 += 80;
+
+                PainelSemScroll.revalidate();
+             }
+
+            try {
+
+                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(TelaPrincipal.class.getResourceAsStream("/Audios/chamada"));
+
+                AudioFormat format = audioInputStream.getFormat();
+
+                DataLine.Info info = new DataLine.Info(Clip.class, format);
+                Clip clip = (Clip) AudioSystem.getLine(info);
+
+                clip.open(audioInputStream);
+
+                clip.start();
+
+                while (!clip.isRunning()){
+                    Thread.sleep(10);
+                }
+                while (clip.isRunning()){
+                    Thread.sleep(10);
+                }
+
+                clip.close();
+                audioInputStream.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            revalidate();
+        }
     }//GEN-LAST:event_btnChamarActionPerformed
 
     private void btnRegistrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMouseEntered
@@ -375,7 +399,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         qtdpacientes ++;
         String nome = txtNome.getText();
         String prioridade = "Azul";
-        String prioridadeLabel = "Muito Baixa.";
         int gravissimos = 0;
         int graves = 0;
         int medios = 0;
@@ -385,7 +408,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         String sintomaGrave = "";
         String sintomaGravissimo = "";
         String sintoma = "";
-        String senhaPriod = "MB 50";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         if(txtNascimento.getText().equals("  /  /    ")){
             JOptionPane.showMessageDialog(null, "Data inválida");
@@ -492,30 +514,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
         if(gravissimos >0 ){
             prioridade = "Vermelha";
             sintoma = sintomaGravissimo;
-            prioridadeLabel = "Muito Alta.";
             fila = 0;
-            senhaPriod = "MA 0";
         }
         else if(graves > 0 ){
             prioridade = "Laranja";
             sintoma = sintomaGrave;
-            prioridadeLabel = "Alta.";
             fila = 1;
-            senhaPriod = "A 20";
         }
         else if(medios > 0 ){
             prioridade = "Amarela";
             sintoma = sintomaMedio;
-            prioridadeLabel = "Média.";
             fila = 2;
-            senhaPriod = "M 30";
         }
         else if(leves > 0 ){
             prioridade = "Verde";
             sintoma = sintomaLeve;
-            prioridadeLabel = "Baixa.";
             fila = 3;
-            senhaPriod = "B 40";
         }
         
         int pos= 0;
@@ -523,14 +537,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Paciente pac = new Paciente(nome,anos,meses ,temperatura,gravida,idoso,dor,gravissimos,graves,medios,leves,sintomaLeve,sintomaMedio,sintomaGrave,sintomaGravissimo,sintoma,pos,prioridade,senha);
         filaPrioritaria.enfileirar(pac,fila);
      
-        System.out.println(filaPrioritaria.contarElementos());
         PainelSemScroll.removeAll();
         PainelSemScroll.revalidate();
         posicao = 20;
         posicao2 = 0;
          for(int i = 0; i < filaPrioritaria.contarElementos();i++){
-            System.out.println(i);
-            System.out.println(filaPrioritaria.contarElementos()+1);
+
             Paciente elemento = (Paciente) filaPrioritaria.acessarElemento(i);
             System.out.println(elemento.getNome());
             JLabel Labels = new javax.swing.JLabel();
@@ -556,7 +568,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             NumFila.setText((i+1) + "°");
             PainelSemScroll.add(NumFila, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, posicao2 + 29, -1, -1));
 
-            Prioridade.setText(prioridadeLabel);
+            Prioridade.setText(elemento.getPrioridade());
             PainelSemScroll.add(Prioridade, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, posicao2 +61, -1, -1));
 
             Labels.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Posicao" + elemento.getPrioridade()+ ".png"))); // NOI18N
@@ -565,7 +577,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
             revalidate();
             posicao += 80;
             posicao2 += 80;
-            qtdLabels +=1;
          }
         txtNome.setText("");
         txtNascimento.setText("");
@@ -714,10 +725,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JCheckBox checkMedio2;
     private javax.swing.JLabel imgFundo;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel senha1;
     private javax.swing.JSlider sldTemp;
     private javax.swing.JFormattedTextField txtNascimento;
     private javax.swing.JTextField txtNome;
+    private javax.swing.JLabel txtSenha1;
+    private javax.swing.JLabel txtSenha2;
+    private javax.swing.JLabel txtSenha3;
+    private javax.swing.JLabel txtSenha4;
     private javax.swing.JTextField txtTemperatura;
     // End of variables declaration//GEN-END:variables
 }
