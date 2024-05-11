@@ -48,6 +48,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         txtTemperatura.setBackground(new Color(0,0,0,0));
         btnRegistrar.setBackground(new Color(0,0,0,0));
         btnVoltar.setBackground(new Color(0,0,0,0));
+        btnDoc.setBackground(new Color(0,0,0,0));
         txtSenha1.setText("");
         txtSenha2.setText("");
         txtSenha3.setText("");
@@ -67,6 +68,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         TelaPrinci = new javax.swing.JPanel();
+        btnDoc = new javax.swing.JButton();
         btnTriagem = new javax.swing.JButton();
         btnChamar = new javax.swing.JButton();
         PainelComScroll = new javax.swing.JScrollPane();
@@ -104,6 +106,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         TelaPrinci.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnDoc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/btnDoc.png"))); // NOI18N
+        btnDoc.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnDoc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnDocMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnDocMouseExited(evt);
+            }
+        });
+        btnDoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDocActionPerformed(evt);
+            }
+        });
+        TelaPrinci.add(btnDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 400, 120, 40));
+
         btnTriagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/btnTriagem.png"))); // NOI18N
         btnTriagem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnTriagem.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -119,7 +138,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 btnTriagemActionPerformed(evt);
             }
         });
-        TelaPrinci.add(btnTriagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 380, 120, 40));
+        TelaPrinci.add(btnTriagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 350, 120, 40));
 
         btnChamar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/btnChamar.png"))); // NOI18N
         btnChamar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -136,7 +155,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 btnChamarActionPerformed(evt);
             }
         });
-        TelaPrinci.add(btnChamar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 335, 120, 40));
+        TelaPrinci.add(btnChamar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, 120, 40));
 
         PainelComScroll.setBorder(null);
 
@@ -407,7 +426,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         String sintomaMedio = "";
         String sintomaGrave = "";
         String sintomaGravissimo = "";
-        String sintoma = "";
+        String sintoma = "Sem sofrimento agudo";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         if(txtNascimento.getText().equals("  /  /    ")){
             JOptionPane.showMessageDialog(null, "Data inválida");
@@ -666,6 +685,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
          btnTriagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/btnTriagem.png")));
     }//GEN-LAST:event_btnTriagemMouseExited
 
+    private void btnDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDocActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDocActionPerformed
+
+    private void btnDocMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDocMouseEntered
+        btnDoc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/btnDoc2.png")));
+    }//GEN-LAST:event_btnDocMouseEntered
+
+    private void btnDocMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDocMouseExited
+        btnDoc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/btnDoc.png")));
+    }//GEN-LAST:event_btnDocMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -707,6 +738,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel TelaPrinci;
     private javax.swing.JPanel TelaTriag;
     private javax.swing.JButton btnChamar;
+    private javax.swing.JButton btnDoc;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnTriagem;
     private javax.swing.JButton btnVoltar;
