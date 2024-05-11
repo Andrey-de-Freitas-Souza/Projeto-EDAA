@@ -5,6 +5,10 @@
 package Package;
 
 import java.awt.Color;
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -686,7 +690,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTriagemMouseExited
 
     private void btnDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDocActionPerformed
-        // TODO add your handling code here:
+        try {
+                    Desktop.getDesktop().browse(new URI("https://github.com/Andrey-de-Freitas-Souza/Projeto-EDAA/blob/main/FilaPrioridade.docx"));
+                } catch (IOException | URISyntaxException ex) {
+                    ex.printStackTrace();
+                }
     }//GEN-LAST:event_btnDocActionPerformed
 
     private void btnDocMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDocMouseEntered
