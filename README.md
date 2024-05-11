@@ -12,12 +12,14 @@ Em uma unidade médica de urgência e emergência hospitalar, cada paciente a se
     Os parâmetros para que seja encontrada  a prioridade do paciente é definido pelo esquema a seguir:<br><br>
 <img src= "https://github.com/Andrey-de-Freitas-Souza/Projeto-EDAA/blob/main/FilaDeEspera/src/main/resources/Imagens/Diagrama.png?raw=true">
 </p>
+
 ## Tela inicial:
 Na tela inicial do projeto, o usuário pode chamar o próximo da fila, através do botão “Chamar”, acessar a tela de triagem através do botão “Triagem” e por fim acessar essa documentação através do botão “Documentação”. Pela tela inicial, também é possível visualizar a ordenação da fila e os registros dos últimos pacientes chamados.
 <p align="center">
 <img src= "https://github.com/Andrey-de-Freitas-Souza/Projeto-EDAA/blob/main/FilaDeEspera/src/main/resources/Imagens/TelaInicialGitHub.png?raw=true">
 </p>
-## Tela Triagem: 
+
+## Tela de Triagem: 
 Na tela de Triagem, o usuário pode realizar o cadastro de um novo paciente, para isso ele deve preencher os dados do paciente e os sintomas que ele possui, assim após o usuário apertar o botão registrar, o sistema irá calcular a idade do paciente e analisar os demais fatores necessários para definir a prioridade, e então após retornar a tela inicial, já conseguirá visualizar em que lugar o paciente está na fila. <br><br>
 <p align="center">
 <img src= "https://github.com/Andrey-de-Freitas-Souza/Projeto-EDAA/blob/main/FilaDeEspera/src/main/resources/Imagens/TelaTriagemGitHub.png?raw=true">
