@@ -691,7 +691,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void btnDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDocActionPerformed
         try {
-                    Desktop.getDesktop().browse(new URI("https://github.com/Andrey-de-Freitas-Souza/Projeto-EDAA/blob/main/FilaPrioridade.docx"));
+                    Desktop.getDesktop().browse(new URI("https://github.com/Andrey-de-Freitas-Souza/Projeto-EDAA/blob/main/FilaPrioridade.pdf"));
                 } catch (IOException | URISyntaxException ex) {
                     ex.printStackTrace();
                 }
