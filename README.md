@@ -31,7 +31,7 @@ Na tela de Triagem, o usuário pode realizar o cadastro de um novo paciente, par
 - Rafael Rossetto Guitarrari (RA: 823158602)
 - Andrey de Freitas Souza (RA: 823217536)
   <a href="https://www.linkedin.com/in/andrey-de-freitas-souza-91206b26a/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
-<a href = "mailto:andreyfrsouza@gmail.com"><img src="https://img.shields.io/badge/-Gmail-%23333?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>   
+<a href = "mailto:andreyfrsouza@gmail.com"><img src="https://img.shields.io/badge/-Gmail-%23333?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>   <br>
 - Gabriel Farah De Lima (RA: 822231424)
 - Fabrício de Barros Narbon (RA: 822227166)
 - Bianca Alves Ribeiro (RA: 8222240261)
