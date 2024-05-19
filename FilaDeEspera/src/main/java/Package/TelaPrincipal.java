@@ -330,7 +330,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             FilaOrdenadaAux.poll();
             
             for(int i = 0; i < FilaOrdenada.size();i++){
-                System.out.println(FilaOrdenadaAux.peek()); 
+
 
                 JLabel Labels = new javax.swing.JLabel();
                 JLabel Nome = new javax.swing.JLabel();
@@ -531,7 +531,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         String senha = String.valueOf(qtdpacientes);
         Paciente pac = new Paciente(nome,anos,meses,sintoma,prioridade,senha,posicaoFila);
         FilaOrdenada.add(pac);
-        System.out.println(FilaOrdenada.size());
+
         Queue<Paciente> FilaOrdenadaAux = new PriorityQueue<>(FilaOrdenada);
         
         PainelSemScroll.removeAll();
@@ -539,7 +539,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         posicao = 20;
         posicao2 = 0;
          for(int i = 0; i < FilaOrdenada.size();i++){
-            System.out.println(FilaOrdenadaAux.peek()); 
+
 
             JLabel Labels = new javax.swing.JLabel();
             JLabel Nome = new javax.swing.JLabel();
