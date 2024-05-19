@@ -25,6 +25,24 @@ Na tela de Triagem, o usuário pode realizar o cadastro de um novo paciente, par
 <img src= "https://github.com/Andrey-de-Freitas-Souza/Projeto-EDAA/blob/main/FilaDeEspera/src/main/resources/Imagens/TelaTriagemGitHub.png?raw=true">
 </p>
 
+## Classe Paciente
+Esta classe foi criada para armazenar os dados dos pacientes, os objetos instanciados dessa classe são ordenados na Fila de Prioridade a partir do atributo posicaoFila, que é definido da seguinte maneira:
+- A cada sintoma Leve, é adicionado 1 ao atributo posicaoFila.
+- A cada sintoma Médio, é adicionado 10 ao atributo posicaoFila.
+- A cada sintoma Grave, é adicionado 100 ao atributo posicaoFila.
+- A cada sintoma Gravíssimo, é adicionado 1000 ao atributo posicaoFila. <br>
+
+<p>A classe também possui um implements Comparable&ltPaciente&gt.</p>
+
+<p align="center">
+<img src= "https://github.com/Andrey-de-Freitas-Souza/Projeto-EDAA/blob/main/FilaDeEspera/src/main/resources/Imagens/ClassePaciente.png?raw=true">
+</p>
+
+## Classe Sistema
+A classe Sistema foi criada para definir a prioridade dos pacientes através do método sobrescrito compare(), para definir a prioridade o método compara o atributo posicaoFila dos Pacientes.
+<p align="center">
+<img src= "https://github.com/Andrey-de-Freitas-Souza/Projeto-EDAA/blob/main/FilaDeEspera/src/main/resources/Imagens/ClasseSistema.png?raw=true">
+</p>
 
 ## Grupo
 
